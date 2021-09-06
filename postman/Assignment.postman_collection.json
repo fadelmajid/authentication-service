@@ -1,0 +1,1663 @@
+{
+	"info": {
+		"_postman_id": "64bf7158-abd5-43ae-8b9c-4f957c0b9a9f",
+		"name": "Assignment",
+		"description": "Request & Response Assignment API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Get token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "device-id",
+								"value": "{{device-id}}"
+							},
+							{
+								"key": "secret-key",
+								"value": "{{secret-key}}"
+							},
+							{
+								"key": "platform",
+								"value": "{{platform}}"
+							},
+							{
+								"key": "push-token",
+								"value": "{{push-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{proto}}://{{domain-url}}/auth/get-token",
+							"protocol": "{{proto}}",
+							"host": [
+								"{{domain-url}}"
+							],
+							"path": [
+								"auth",
+								"get-token"
+							]
+						},
+						"description": "Get access token & refresh token\n\n| Param / Variable | Description |\n| ------ | ------ |\n| device_id | an unique id |\n| secret_key | hardcoded in app (ask backend engineer) |\n| platform | ios / android |"
+					},
+					"response": [
+						{
+							"name": "Get token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "device-id",
+										"value": "{{device-id}}"
+									},
+									{
+										"key": "secret-key",
+										"value": "{{secret-key}}"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}"
+									},
+									{
+										"key": "push-token",
+										"value": "{{push-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/auth/get-token",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"auth",
+										"get-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-mNUzA2U73Z80RfsW9KegVrKPca0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Aug 2019 03:35:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"payload\": {\n        \"access_token\": \"6db5a1466fe6d2e3a6a1435f42f96d716682ae6176ee1d8a4bc8dee7ccd03153\",\n        \"refresh_token\": \"d8a864695d9c83e934b4fbb716c0a107ce49dc6ccd83aec890206f884e12eec2\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Latest Version",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "app-version",
+								"value": "{{app-version}}",
+								"type": "text"
+							},
+							{
+								"key": "platform",
+								"value": "{{platform}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{proto}}://{{domain-url}}/auth/get-version",
+							"protocol": "{{proto}}",
+							"host": [
+								"{{domain-url}}"
+							],
+							"path": [
+								"auth",
+								"get-version"
+							]
+						},
+						"description": "Get access token & refresh token\n\n| Param / Variable | Description |\n| ------ | ------ |\n| platform | ios / android |"
+					},
+					"response": [
+						{
+							"name": "Get Version",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/auth/get-version",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"auth",
+										"get-version"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "85"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"55-Fq4Fu+g2PYCZbQJua1rhbB3t9oI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Oct 2018 05:35:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"payload\": {\n        \"code\": \"0.9.7\",\n        \"platform\": \"android\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "refresh-token",
+								"value": "{{refresh-token}}"
+							}
+						],
+						"url": {
+							"raw": "{{proto}}://{{domain-url}}/auth/refresh-token",
+							"protocol": "{{proto}}",
+							"host": [
+								"{{domain-url}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						},
+						"description": "Refersh the access token"
+					},
+					"response": [
+						{
+							"name": "Refresh Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "refresh_token",
+										"value": "{{refresh-token}}"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/auth/refresh-token",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Length",
+									"value": "214",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Aug 2018 04:57:44 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d6-tgfexAOkUU7Nry85CLT6d/IVGFE\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								}
+							],
+							"cookie": [],
+							"body": "{\"status\":\"success\",\"statusCode\":200,\"payload\":{\"access_token\":\"97e9b804313a67c63204a41a7501bb4ee1c3f711f2ae39d63fa7c5f582a74b09\",\"refresh_token\":\"f7368a5cdef6d6403f6932fa3dc2f3a297238e3506d7c30a65bec11b8092b131\"}}"
+						}
+					]
+				},
+				{
+					"name": "Login customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "app-version",
+								"value": "{{app-version}}",
+								"type": "text"
+							},
+							{
+								"key": "platform",
+								"value": "{{platform}}",
+								"type": "text"
+							},
+							{
+								"key": "push-token",
+								"value": "{{push-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"fadelmajid1\",\n\t\"password\": \"123123123\"\n}"
+						},
+						"url": {
+							"raw": "{{proto}}://{{domain-url}}/auth/login",
+							"protocol": "{{proto}}",
+							"host": [
+								"{{domain-url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login customer\n\n| Param / Variable | Description |\n| ------ | ------ |\n| phone | customer phone number |\n| code | verification code |"
+					},
+					"response": [
+						{
+							"name": "Login customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									},
+									{
+										"key": "push-token",
+										"value": "{{push-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"phone\": \"0817888167\",\n\t\"password\": \"123123123\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/auth/login",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-SVI84WesB1fp1E6XHtUy4RuXTVQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Aug 2019 03:37:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"payload\": {\n        \"code\": \"success\",\n        \"en\": \"Success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register new customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "app-version",
+								"value": "{{app-version}}",
+								"type": "text"
+							},
+							{
+								"key": "platform",
+								"value": "{{platform}}",
+								"type": "text"
+							},
+							{
+								"key": "push-token",
+								"value": "{{push-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"08178881681\",\n    \"username\": \"fadelmajid1\",\n\t\"name\": \"Fadel Majid 2\",\n\t\"email\": \"fadelmajid2@gmail.com\",\n\t\"password\": \"123123123\",\n    \"id_number\": \"3212312312321312\",\n    \"birthday\": \"1996-12-02\"\n}"
+						},
+						"url": {
+							"raw": "{{proto}}://{{domain-url}}/auth/register",
+							"protocol": "{{proto}}",
+							"host": [
+								"{{domain-url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register new customer\n\n| Param / Variable | Description |\n| ------ | ------ |\n| phone | customer phone number |\n| code | verification code |\n| name | customer name |\n| email | customer email |"
+					},
+					"response": [
+						{
+							"name": "Register new customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "access_token",
+										"value": "{{access-token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"phone\": \"+62856888999\",\n\t\"code\": \"36736\",\n\t\"name\": \"john doe\",\n\t\"email\": \"loremipsum@yahoo.com\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/auth/register",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Aug 2018 04:02:12 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-SVI84WesB1fp1E6XHtUy4RuXTVQ\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								}
+							],
+							"cookie": [],
+							"body": "{\"status\":\"success\",\"statusCode\":200,\"payload\":{\"code\":\"success\",\"en\":\"Success\"}}"
+						}
+					]
+				},
+				{
+					"name": "Logout customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "access-token",
+								"value": "{{access-token}}",
+								"type": "text"
+							},
+							{
+								"key": "app-version",
+								"value": "{{app-version}}",
+								"type": "text"
+							},
+							{
+								"key": "platform",
+								"value": "{{platform}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{proto}}://{{domain-url}}/auth/logout",
+							"protocol": "{{proto}}",
+							"host": [
+								"{{domain-url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Logout customer"
+					},
+					"response": [
+						{
+							"name": "Logout customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "access_token",
+										"value": "{{access-token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/auth/logout",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Aug 2018 04:58:11 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-SVI84WesB1fp1E6XHtUy4RuXTVQ\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								}
+							],
+							"cookie": [],
+							"body": "{\"status\":\"success\",\"statusCode\":200,\"payload\":{\"code\":\"success\",\"en\":\"Success\"}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "get profile",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/customer/profile",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"customer",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "access-token",
+												"value": "{{access-token}}",
+												"type": "text"
+											},
+											{
+												"key": "app-version",
+												"value": "{{app-version}}",
+												"type": "text"
+											},
+											{
+												"key": "platform",
+												"value": "{{platform}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{proto}}://{{domain-url}}/user/profile",
+											"protocol": "{{proto}}",
+											"host": [
+												"{{domain-url}}"
+											],
+											"path": [
+												"user",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "363"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"16b-M4jxvo83oZxXUYnsFAtuspapTck\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2019 03:38:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"payload\": {\n        \"user_id\": 11,\n        \"user_name\": \"John Doe 12\",\n        \"user_code\": \"948561\",\n        \"user_email\": \"john.doe@gmail.co.id\",\n        \"user_phone\": \"+62817888167\",\n        \"user_status\": \"active\",\n        \"last_login\": \"2019-08-04T03:37:51.000Z\",\n        \"last_activity\": \"2019-08-04T03:38:40.000Z\",\n        \"created_date\": \"2019-08-03T15:19:22.000Z\",\n        \"updated_date\": \"2019-08-03T15:24:57.000Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "edit profile",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"customer_name\": \"Fadel Majid III\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/customer/profile",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"customer",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "edit profile",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "access-token",
+												"value": "{{access-token}}",
+												"type": "text"
+											},
+											{
+												"key": "app-version",
+												"value": "{{app-version}}",
+												"type": "text"
+											},
+											{
+												"key": "platform",
+												"value": "{{platform}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"user_name\": \"John Doe XI\",\n\t\"user_email\":\"john.doeXI.go@gmail.co.id\"\n}"
+										},
+										"url": {
+											"raw": "{{proto}}://{{domain-url}}/user/profile",
+											"protocol": "{{proto}}",
+											"host": [
+												"{{domain-url}}"
+											],
+											"path": [
+												"user",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "368"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"170-dgW5RDFwmck9ZCJtJABfmSm561k\""
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2019 03:39:40 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"payload\": {\n        \"user_id\": 11,\n        \"user_name\": \"John Doe XI\",\n        \"user_code\": \"948561\",\n        \"user_email\": \"john.doexi.go@gmail.co.id\",\n        \"user_phone\": \"+62817888167\",\n        \"user_status\": \"active\",\n        \"last_login\": \"2019-08-04T03:37:51.000Z\",\n        \"last_activity\": \"2019-08-04T03:39:40.000Z\",\n        \"created_date\": \"2019-08-03T15:19:22.000Z\",\n        \"updated_date\": \"2019-08-04T03:39:40.000Z\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "account",
+					"item": [
+						{
+							"name": "create account",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_number\": \"22223\",\n    \"account_name\": \"test fadel 1\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update account",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customer_account_name\": \"Bob Marley IX\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account/:account_number",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account",
+										":account_number"
+									],
+									"variable": [
+										{
+											"key": "account_number",
+											"value": "22222"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all account",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account/all?keyword=",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account",
+										"all"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get pagination account",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account?page=1&perpage=1",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "perpage",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get account",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account/:account_number",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account",
+										":account_number"
+									],
+									"variable": [
+										{
+											"key": "account_number",
+											"value": "22223"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "topup account",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 300000\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account/:account_number/topup",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account",
+										":account_number",
+										"topup"
+									],
+									"variable": [
+										{
+											"key": "account_number",
+											"value": "22222"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"to_account_number\": \"22222\",\n    \"amount\": 12123\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/account/:from/transfer",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"account",
+										":from",
+										"transfer"
+									],
+									"variable": [
+										{
+											"key": "from",
+											"value": "22223"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "transaction",
+					"item": [
+						{
+							"name": "create transaction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_number\": \"22223\",\n    \"amount\": 200,\n    \"type\": \"income\",\n    \"notes\": \"proyek\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update transaction",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_number\": \"22223\",\n    \"amount\": 200,\n    \"type\": \"expense\",\n    \"notes\": \"proyek\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/:transaction_id",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										":transaction_id"
+									],
+									"variable": [
+										{
+											"key": "transaction_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete transaction",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_number\": \"22223\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/:transaction_id",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										":transaction_id"
+									],
+									"variable": [
+										{
+											"key": "transaction_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get pagination transaction",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction?page=1&perpage=1",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "perpage",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all transaction",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/all?type=",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										"all"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get transaction",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "access-token",
+										"type": "text",
+										"value": "{{access-token}}"
+									},
+									{
+										"key": "app-version",
+										"type": "text",
+										"value": "{{app-version}}"
+									},
+									{
+										"key": "platform",
+										"type": "text",
+										"value": "{{platform}}"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/:transaction_id",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										":transaction_id"
+									],
+									"variable": [
+										{
+											"key": "transaction_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

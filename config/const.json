@@ -1,0 +1,9 @@
+{
+    "page_no": 1,
+    "no_per_page": 20,
+
+    "ver_active": "active",
+    "ver_inactive": "inactive",
+    "ver_unreleased": "unreleased",
+    "trx_types": ["income", "expense", "transfer", "topup"]
+}
