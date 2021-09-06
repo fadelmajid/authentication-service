@@ -1,12 +1,12 @@
-Transaction Bookeeping
+AUTHENTICATION SERVICE
 ==============
 
 Setup
 ------------
 1. Make sure you've install docker
-2. In this directory, run command: `docker-compose up` or `docker-compose up -d` to initiate Database
-3. Run command `npm install` to install depedencies
-4. Run command `npm start`
+2. In this directory, run command: `docker build .`
+2. ignore if there's a red text, wait until finish
+4. run command: `docker-compose up` or `docker-compose up -d` to initiate DB and start the service
 5. Import the POSTMAN folder to your POSTMAN application
 6. and read DOCUMENTATION FOR DETAIL FLOW / SCENARIO
 7. try the endpoint

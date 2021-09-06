@@ -51,31 +51,29 @@ let obj = (rootpath) => {
         throw getMessage("auth007");
       }
 
-      // if logged in select customer information
+      // if logged in select user information
       if (detailToken.user_id > 0) {
-        // get customer detail
-        let detailUser = await req
-          .model("customer")
-          .getUser(detailToken.user_id);
-        // if customer not found, throw error
+        // get user detail
+        let detailUser = await req.model("users").getUser(detailToken.user_id);
+        // if user not found, throw error
         if (isEmpty(detailUser)) {
           // inactive token by device id
           await req.model("auth").setTokenInactive(detailToken.atoken_device);
           throw getMessage("auth014");
         }
 
-        // if customer is not active
-        if (detailUser.customer_status != "active") {
+        // if user is not active
+        if (detailUser.user_status != "active") {
           // inactive token by device id
           await req.model("auth").setTokenInactive(detailToken.atoken_device);
           throw getMessage("auth010");
         }
 
-        // set customer & token into request object
+        // set user & token into request object
         req.objUser = detailUser;
         req.objToken = detailToken;
       } else {
-        // set customer & token into request object
+        // set user & token into request object
         req.objUser = null;
         req.objToken = detailToken;
       }
@@ -109,22 +107,22 @@ let obj = (rootpath) => {
         throw getMessage("auth007");
       }
 
-      // validate customer login
+      // validate user login
       if (detailToken.user_id <= 0) {
         throw getMessage("auth009");
       }
 
-      // get customer detail
-      let detailUser = await req.model("customer").getUser(detailToken.user_id);
-      // if customer not found, throw error
+      // get user detail
+      let detailUser = await req.model("users").getUser(detailToken.user_id);
+      // if user not found, throw error
       if (isEmpty(detailUser)) {
         // inactive token by device id
         await req.model("auth").setTokenInactive(detailToken.atoken_device);
         throw getMessage("auth014");
       }
 
-      // if customer is not active
-      if (detailUser.customer_status != "active") {
+      // if user is not active
+      if (detailUser.user_status != "active") {
         // inactive token by device id
         await req.model("auth").setTokenInactive(detailToken.atoken_device);
         throw getMessage("auth010");
@@ -132,10 +130,10 @@ let obj = (rootpath) => {
 
       // set activity
       await req
-        .model("customer")
+        .model("users")
         .updateUser(detailUser.user_id, { last_activity: now });
 
-      // set customer & token into request object
+      // set user & token into request object
       req.objUser = detailUser;
       req.objToken = detailToken;
 
@@ -167,10 +165,10 @@ let obj = (rootpath) => {
       }
       // end validation
 
-      let customerToken = await req.model("auth").getToken(device_id, platform);
+      let userToken = await req.model("auth").getToken(device_id, platform);
       let result = {
-        access_token: customerToken.atoken_access,
-        refresh_token: customerToken.atoken_refresh,
+        access_token: userToken.atoken_access,
+        refresh_token: userToken.atoken_refresh,
       };
       res.success(result);
     } catch (e) {
@@ -180,7 +178,7 @@ let obj = (rootpath) => {
 
   fn.validPassword = async (password, savePass) => {
     let crypto = require("crypto");
-    // creating a unique salt for a particular customer
+    // creating a unique salt for a particular user
     let salt = "encryptKey";
 
     let hash = crypto
@@ -194,14 +192,14 @@ let obj = (rootpath) => {
     try {
       let username = (req.body.username || "").trim();
 
-      // check customer is already logged in or not
+      // check user is already logged in or not
       if (req.objUser != null) {
         throw getMessage("auth012");
       }
 
-      // get customer detail
-      let detailUser = await req.model("customer").getUserUsername(username);
-      // if customer not found, throw error
+      // get user detail
+      let detailUser = await req.model("users").getUserUsername(username);
+      // if user not found, throw error
       if (isEmpty(detailUser)) {
         // frontend must detect this error code and redirect to register page
         throw getMessage("auth013");
@@ -210,14 +208,14 @@ let obj = (rootpath) => {
       // validate password
       let password = await fn.validPassword(
         (req.body.password || "").trim(),
-        detailUser.customer_password
+        detailUser.user_password
       );
       if (password == false) {
         throw getMessage("auth013");
       }
 
-      // if customer is not active
-      if (detailUser.customer_status != "active") {
+      // if user is not active
+      if (detailUser.user_status != "active") {
         throw getMessage("auth010");
       }
 
@@ -226,7 +224,7 @@ let obj = (rootpath) => {
         detailUser: detailUser,
         objToken: req.objToken,
       };
-      let is_logged_in = await req.model("user").login(dataLogin);
+      let is_logged_in = await req.model("users").login(dataLogin);
 
       if (is_logged_in) {
         res.success(getMessage("success"));
@@ -244,13 +242,13 @@ let obj = (rootpath) => {
       let validator = require("validator");
       await req.model("auth").setTokenInactive(req.objToken.atoken_device);
 
-      //init customer id and platform
+      //init user id and platform
       let user_id = parseInt(req.objToken.user_id) || 0;
       if (user_id <= 0) {
         throw getMessage("cst006");
       }
-      let customer_platform = req.objToken.atoken_platform || "";
-      if (validator.isEmpty(customer_platform)) {
+      let user_platform = req.objToken.atoken_platform || "";
+      if (validator.isEmpty(user_platform)) {
         throw getMessage("auth015");
       }
 
@@ -262,10 +260,10 @@ let obj = (rootpath) => {
 
   fn.setPassword = async (password) => {
     let crypto = require("crypto");
-    // creating a unique salt for a particular customer
+    // creating a unique salt for a particular user
     let salt = "encryptKey";
 
-    // hashing customer's salt and password with 1000 iterations, 64 length and sha512 digest
+    // hashing user's salt and password with 1000 iterations, 64 length and sha512 digest
     let hash = crypto
       .pbkdf2Sync(password, salt, 1000, 64, "sha512")
       .toString("hex");
@@ -279,7 +277,7 @@ let obj = (rootpath) => {
       let moment = require("moment");
       let now = moment().format("YYYY-MM-DD HH:mm:ss");
 
-      // check customer is already logged in or not
+      // check user is already logged in or not
       if (req.objUser != null) {
         throw getMessage("auth012");
       }
@@ -305,7 +303,7 @@ let obj = (rootpath) => {
       if (validator.isEmpty(name)) {
         throw getMessage("cst002");
       }
-      // Validate customername length
+      // Validate username length
       if (!loadLib("validation").validName(name)) {
         throw getMessage("cst018");
       }
@@ -319,7 +317,7 @@ let obj = (rootpath) => {
         throw getMessage("cst004");
       }
       // validate duplicate email
-      let dupeEmail = await req.model("user").getUserEmail(email);
+      let dupeEmail = await req.model("users").getUserEmail(email);
       if (isEmpty(dupeEmail) == false) {
         throw getMessage("cst005");
       }
@@ -328,7 +326,7 @@ let obj = (rootpath) => {
         throw getMessage("cst030");
       }
       // validate duplicate username
-      let dupeUsername = await req.model("customer").getUserUsername(username);
+      let dupeUsername = await req.model("users").getUserUsername(username);
       if (isEmpty(dupeUsername) == false) {
         throw getMessage("cst029");
       }
@@ -354,10 +352,10 @@ let obj = (rootpath) => {
         throw getMessage("cst028");
       }
 
-      // get customer detail
-      let detailUser = await req.model("user").getUserPhone(phone);
+      // get user detail
+      let detailUser = await req.model("users").getUserPhone(phone);
 
-      // if customer not found, then register
+      // if user not found, then register
       if (isEmpty(detailUser)) {
         let data = {
           name: name,
@@ -369,8 +367,8 @@ let obj = (rootpath) => {
           password: password,
           objToken: req.objToken,
         };
-        let detailUser = await req.model("user").registration(data);
-        req.customerobjUser = detailUser;
+        let detailUser = await req.model("users").registration(data);
+        req.userobjUser = detailUser;
       } else {
         throw getMessage("auth016");
       }

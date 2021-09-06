@@ -11,13 +11,13 @@ let obj = (rootpath) => {
         throw getMessage("cst006");
       }
 
-      let result = await req.model("user").getUser(user_id);
+      let result = await req.model("users").getUser(user_id);
       if (isEmpty(result)) {
         throw getMessage("cst007");
       }
 
       // don't show the password when get profile
-      delete result.customer_password;
+      delete result.user_password;
 
       res.success(result);
     } catch (e) {
@@ -33,8 +33,8 @@ let obj = (rootpath) => {
         throw getMessage("cst006");
       }
 
-      // Validate customername length
-      let name = (req.body.customer_name || "").trim();
+      // Validate username length
+      let name = (req.body.user_name || "").trim();
       let email = (req.body.email || "").trim().toLowerCase();
       let phone = (req.body.phone || "").trim();
       let id_number = (req.body.id_number || "").trim();
@@ -43,45 +43,43 @@ let obj = (rootpath) => {
         throw getMessage("cst018");
       }
 
-      let detailUser = await req.model("user").getUser(user_id);
+      let detailUser = await req.model("users").getUser(user_id);
       if (isEmpty(detailUser)) {
         throw getMessage("cst007");
       }
 
       let data = {
-        customer_name: name || detailUser.customer_name,
-        customer_email: email || detailUser.customer_email,
-        customer_phone: phone || detailUser.customer_phone,
+        user_name: name || detailUser.user_name,
+        user_email: email || detailUser.user_email,
+        user_phone: phone || detailUser.user_phone,
         user_identification_id: id_number || detailUser.user_identification_id,
         updated_date: moment().format("YYYY-MM-DD HH:mm:ss"),
       };
 
       // validate name
-      if (validator.isEmpty(data.customer_name)) {
+      if (validator.isEmpty(data.user_name)) {
         throw getMessage("cst002");
       }
       // validate email
-      if (validator.isEmpty(data.customer_email)) {
+      if (validator.isEmpty(data.user_email)) {
         throw getMessage("cst003");
       }
       // validate email format
-      if (!loadLib("validation").isValidEmail(data.customer_email)) {
+      if (!loadLib("validation").isValidEmail(data.user_email)) {
         throw getMessage("cst004");
       }
-      // validate if email exists and not belong to logged in customer
-      let dupEmail = await req
-        .model("customer")
-        .getUserEmail(data.customer_email);
+      // validate if email exists and not belong to logged in user
+      let dupEmail = await req.model("users").getUserEmail(data.user_email);
       if (dupEmail && dupEmail.user_id !== user_id) {
         throw getMessage("cst005");
       }
 
       // insert data & get detail
-      await req.model("user").updateUser(user_id, data);
-      let result = await req.model("user").getUser(user_id);
+      await req.model("users").updateUser(user_id, data);
+      let result = await req.model("users").getUser(user_id);
 
       // don't show password
-      delete result.customer_password;
+      delete result.user_password;
 
       res.success(result);
     } catch (e) {

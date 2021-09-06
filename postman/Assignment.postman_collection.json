@@ -337,7 +337,7 @@
 					]
 				},
 				{
-					"name": "Login customer",
+					"name": "Login user",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -393,11 +393,11 @@
 								"login"
 							]
 						},
-						"description": "Login customer\n\n| Param / Variable | Description |\n| ------ | ------ |\n| phone | customer phone number |\n| code | verification code |"
+						"description": "Login user\n\n| Param / Variable | Description |\n| ------ | ------ |\n| phone | user phone number |\n| code | verification code |"
 					},
 					"response": [
 						{
-							"name": "Login customer",
+							"name": "Login user",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -474,7 +474,7 @@
 					]
 				},
 				{
-					"name": "Register new customer",
+					"name": "Register new user",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -530,11 +530,11 @@
 								"register"
 							]
 						},
-						"description": "Register new customer\n\n| Param / Variable | Description |\n| ------ | ------ |\n| phone | customer phone number |\n| code | verification code |\n| name | customer name |\n| email | customer email |"
+						"description": "Register new user\n\n| Param / Variable | Description |\n| ------ | ------ |\n| phone | user phone number |\n| code | verification code |\n| name | user name |\n| email | user email |"
 					},
 					"response": [
 						{
-							"name": "Register new customer",
+							"name": "Register new user",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -604,7 +604,7 @@
 					]
 				},
 				{
-					"name": "Logout customer",
+					"name": "Logout user",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -655,11 +655,11 @@
 								"logout"
 							]
 						},
-						"description": "Logout customer"
+						"description": "Logout user"
 					},
 					"response": [
 						{
-							"name": "Logout customer",
+							"name": "Logout user",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -774,13 +774,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{proto}}://{{domain-url}}/customer/profile",
+									"raw": "{{proto}}://{{domain-url}}/user/profile",
 									"protocol": "{{proto}}",
 									"host": [
 										"{{domain-url}}"
 									],
 									"path": [
-										"customer",
+										"user",
 										"profile"
 									]
 								}
@@ -893,16 +893,16 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"customer_name\": \"Fadel Majid III\"\n}"
+									"raw": "{\n\t\"user_name\": \"Fadel Majid III\"\n}"
 								},
 								"url": {
-									"raw": "{{proto}}://{{domain-url}}/customer/profile",
+									"raw": "{{proto}}://{{domain-url}}/user/profile",
 									"protocol": "{{proto}}",
 									"host": [
 										"{{domain-url}}"
 									],
 									"path": [
-										"customer",
+										"user",
 										"profile"
 									]
 								}
@@ -1056,7 +1056,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"customer_account_name\": \"Bob Marley IX\"\n}"
+									"raw": "{\n    \"user_account_name\": \"Bob Marley IX\"\n}"
 								},
 								"url": {
 									"raw": "{{proto}}://{{domain-url}}/account/:account_number",

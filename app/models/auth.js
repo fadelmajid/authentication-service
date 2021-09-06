@@ -79,7 +79,7 @@ let obj = (objDB, db, rootpath) => {
     };
     await fn.updateToken(atoken_id, data);
 
-    // return 1 row of customer token
+    // return 1 row of user token
     return await fn.getUserToken(atoken_id);
   };
 
@@ -110,7 +110,7 @@ let obj = (objDB, db, rootpath) => {
     };
     let atoken_id = await fn.insertToken(data);
 
-    // return 1 row of customer token
+    // return 1 row of user token
     return await fn.getUserToken(atoken_id.atoken_id);
   };
 

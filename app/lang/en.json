@@ -25,7 +25,7 @@
     {"auth007": "Your access token is invalid or already expired."},
     {"auth008": "Your refresh token is invalid, please relogin."},
     {"auth009": "You are not authorized to access this page."},
-    {"auth010": "Your account has been disabled, for more information please contact our customer service."},
+    {"auth010": "Your account has been disabled, for more information please contact our user service."},
     {"auth011": "Verification code you entered is invalid or already expired."},
     {"auth012": "You are already logged in."},
     {"auth013": "Your phone is not registered."},

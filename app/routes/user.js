@@ -1,12 +1,12 @@
 'use strict'
 
 module.exports = (app) => {
-    const customerController = app.controller('customer')
+    const userController = app.controller('user')
 
     let aRoutes = [
         // START PROFILE
-        {method: 'get', route: '/profile', inits: [], middlewares: [customerController.getProfile], auth: 'login'},
-        {method: 'put', route: '/profile', inits: [], middlewares: [customerController.updateProfile], auth: 'login'},
+        {method: 'get', route: '/profile', inits: [], middlewares: [userController.getProfile], auth: 'login'},
+        {method: 'put', route: '/profile', inits: [], middlewares: [userController.updateProfile], auth: 'login'},
         // END PROFILE
     ]
     return aRoutes
