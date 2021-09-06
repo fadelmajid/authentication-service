@@ -11,7 +11,7 @@ let obj = (rootpath) => {
         throw getMessage("cst006");
       }
 
-      let result = await req.model("users").getUser(user_id);
+      let result = await req.model("user").getUser(user_id);
       if (isEmpty(result)) {
         throw getMessage("cst007");
       }
@@ -43,7 +43,7 @@ let obj = (rootpath) => {
         throw getMessage("cst018");
       }
 
-      let detailUser = await req.model("users").getUser(user_id);
+      let detailUser = await req.model("user").getUser(user_id);
       if (isEmpty(detailUser)) {
         throw getMessage("cst007");
       }
@@ -69,14 +69,14 @@ let obj = (rootpath) => {
         throw getMessage("cst004");
       }
       // validate if email exists and not belong to logged in user
-      let dupEmail = await req.model("users").getUserEmail(data.user_email);
+      let dupEmail = await req.model("user").getUserEmail(data.user_email);
       if (dupEmail && dupEmail.user_id !== user_id) {
         throw getMessage("cst005");
       }
 
       // insert data & get detail
-      await req.model("users").updateUser(user_id, data);
-      let result = await req.model("users").getUser(user_id);
+      await req.model("user").updateUser(user_id, data);
+      let result = await req.model("user").getUser(user_id);
 
       // don't show password
       delete result.user_password;

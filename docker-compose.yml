@@ -8,12 +8,16 @@ services:
       - /usr/app/node_modules
     ports:
       - "3000:3000"
+    networks:
+      - default
     depends_on:
       - my-postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:a455328fm@my-postgres:5432/assignment
   my-postgres:
     image: postgres
     ports:
-      - "9000:5432"
+      - "5432:5432"
     environment:
       # this setup will also represent in ./config/config.json
       POSTGRES_USER: postgres
@@ -22,3 +26,5 @@ services:
     volumes:
       - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
       - ./fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+    networks:
+      - default

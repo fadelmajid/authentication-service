@@ -54,7 +54,7 @@ let obj = (rootpath) => {
       // if logged in select user information
       if (detailToken.user_id > 0) {
         // get user detail
-        let detailUser = await req.model("users").getUser(detailToken.user_id);
+        let detailUser = await req.model("user").getUser(detailToken.user_id);
         // if user not found, throw error
         if (isEmpty(detailUser)) {
           // inactive token by device id
@@ -113,7 +113,7 @@ let obj = (rootpath) => {
       }
 
       // get user detail
-      let detailUser = await req.model("users").getUser(detailToken.user_id);
+      let detailUser = await req.model("user").getUser(detailToken.user_id);
       // if user not found, throw error
       if (isEmpty(detailUser)) {
         // inactive token by device id
@@ -130,7 +130,7 @@ let obj = (rootpath) => {
 
       // set activity
       await req
-        .model("users")
+        .model("user")
         .updateUser(detailUser.user_id, { last_activity: now });
 
       // set user & token into request object
@@ -198,7 +198,7 @@ let obj = (rootpath) => {
       }
 
       // get user detail
-      let detailUser = await req.model("users").getUserUsername(username);
+      let detailUser = await req.model("user").getUserUsername(username);
       // if user not found, throw error
       if (isEmpty(detailUser)) {
         // frontend must detect this error code and redirect to register page
@@ -224,7 +224,7 @@ let obj = (rootpath) => {
         detailUser: detailUser,
         objToken: req.objToken,
       };
-      let is_logged_in = await req.model("users").login(dataLogin);
+      let is_logged_in = await req.model("user").login(dataLogin);
 
       if (is_logged_in) {
         res.success(getMessage("success"));
@@ -317,7 +317,7 @@ let obj = (rootpath) => {
         throw getMessage("cst004");
       }
       // validate duplicate email
-      let dupeEmail = await req.model("users").getUserEmail(email);
+      let dupeEmail = await req.model("user").getUserEmail(email);
       if (isEmpty(dupeEmail) == false) {
         throw getMessage("cst005");
       }
@@ -326,7 +326,7 @@ let obj = (rootpath) => {
         throw getMessage("cst030");
       }
       // validate duplicate username
-      let dupeUsername = await req.model("users").getUserUsername(username);
+      let dupeUsername = await req.model("user").getUserUsername(username);
       if (isEmpty(dupeUsername) == false) {
         throw getMessage("cst029");
       }
@@ -353,7 +353,7 @@ let obj = (rootpath) => {
       }
 
       // get user detail
-      let detailUser = await req.model("users").getUserPhone(phone);
+      let detailUser = await req.model("user").getUserPhone(phone);
 
       // if user not found, then register
       if (isEmpty(detailUser)) {
@@ -367,7 +367,7 @@ let obj = (rootpath) => {
           password: password,
           objToken: req.objToken,
         };
-        let detailUser = await req.model("users").registration(data);
+        let detailUser = await req.model("user").registration(data);
         req.userobjUser = detailUser;
       } else {
         throw getMessage("auth016");

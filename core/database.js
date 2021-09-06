@@ -9,16 +9,8 @@ let dbx = (rootpath) => {
             return pool
         }
         pool = new postgres({
-            connectionLimit : 500,
-            host: configDB.host,
-            port: configDB.port,
-            user: configDB.username,
-            password: configDB.password,
-            database: configDB.database,
-            timezone: 'SYSTEM',
-            timeout: 5,
-            debug: ENV === 'development' ? ['ComQueryPacket'] : false
-        })
+            connectionString: process.env.DATABASE_URL,
+        });
         return pool
     }
 
