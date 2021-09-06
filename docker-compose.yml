@@ -1,5 +1,15 @@
 version: "2.2"
 services:
+  my-web:
+    build: .
+    command: npm start
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - my-postgres
   my-postgres:
     image: postgres
     ports:

@@ -731,7 +731,7 @@
 			]
 		},
 		{
-			"name": "Customer",
+			"name": "User",
 			"item": [
 				{
 					"name": "profile",
