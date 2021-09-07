@@ -195,9 +195,19 @@ let obj = (rootpath) => {
         throw getMessage("cst006");
       }
       // validate if the amount is more than 10000
-      let amount = parseInt(req.body.amount) || 0;
-      if (amount < 0) {
+      let total_amount = parseInt(req.body.total_amount) || 0;
+      if (total_amount < 0) {
         throw getMessage("udt012");
+      }
+
+      let paid_amount = parseInt(req.body.paid_amount) || 0;
+      if (paid_amount < 0) {
+        throw getMessage("udt012");
+      }
+
+      // validate payemnt_method
+      if (!cst.trx_types.includes(req.body.payment_method)) {
+        throw getMessage("udt019");
       }
 
       // validate if transaction exists and transaction belongs to login user
@@ -218,27 +228,25 @@ let obj = (rootpath) => {
       }
 
       let data = {
-        trx: trx,
-        to: account,
-        from: account,
-        amount: amount,
-        payment_method: req.body.payment_method,
-        notes: notes,
+        user_id: user_id,
+        transaction_total_amount: total_amount || trx.transaction_total_amount,
+        transaction_paid_amount: paid_amount || trx.transaction_paid_amount,
+        transaction_change_amount:
+          Math.abs(total_amount - paid_amount) || trx.transaction_change_amount,
+        transaction_payment_method:
+          req.body.payment_method || trx.transaction_payment_method,
+        updated_at: now,
       };
 
-      let is_transacted = await req
+      await req
         .model("transaction")
-        .updateTransaction(data);
+        .updateTransaction(trx.transaction_id, data);
 
-      if (is_transacted.status) {
-        let result = await req
-          .model("transaction")
-          .getAccount(account.user_account_id);
-        result.transaction_id = is_transacted.transaction_id;
-        res.success(result);
-      } else {
-        throw getMessage("udt013");
-      }
+      let result = await req
+        .model("transaction")
+        .getTransaction(trx.transaction_id);
+
+      res.success(result);
     } catch (e) {
       next(e);
     }
@@ -263,19 +271,11 @@ let obj = (rootpath) => {
         throw getMessage("udt006");
       }
 
-      let data = {
-        trx: trx,
-        to: account,
-        from: account,
-        amount: trx.transaction_total_amount,
-        payment_method: trx.transaction_payment_method,
-      };
-
       let is_transacted = await req
         .model("transaction")
-        .softDeleteTransaction(data);
+        .softDeleteTransaction(req.params.transaction_id);
 
-      if (is_transacted.status) {
+      if (is_transacted) {
         res.success({
           message: `transaction ${req.params.transaction_id} has been deleted`,
         });
