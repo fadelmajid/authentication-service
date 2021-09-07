@@ -5,6 +5,7 @@ module.exports = (app, router) => {
     const authController = app.controller('auth');
 
     router.use('/auth', app.route('auth', authController));
+    router.use('/transaction', app.route('transaction', authController));
     router.use('/user', app.route('user', authController));
     router.get('/', mainController.index);
 };

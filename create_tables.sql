@@ -59,3 +59,28 @@ CREATE TABLE IF NOT EXISTS history_device (
   created_date TIMESTAMP,
   PRIMARY KEY (hd_id)
 );
+
+CREATE TABLE IF NOT EXISTS transaction (
+  transaction_id SERIAL,
+  user_id SERIAL,
+  transaction_total_amount INT,
+  transaction_paid_amount INT,
+  transaction_change_amount INT,
+  transaction_payment_method VARCHAR(5),
+  created_at TIMESTAMP,
+  updated_at TIMESTAMP,
+  deleted_at TIMESTAMP,
+  PRIMARY KEY (transaction_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS transaction_items (
+  transaction_item_id SERIAL,
+  transaction_id SERIAL,
+  transaction_item_title VARCHAR(64),
+  transaction_item_qty INT,
+  transaction_item_price INT,
+  created_at TIMESTAMP,
+  deleted_at TIMESTAMP,
+  PRIMARY KEY (transaction_item_id)
+);

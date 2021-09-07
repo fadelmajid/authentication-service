@@ -3,5 +3,7 @@
     "auth_token": "auth_token",    
     "app_version": "app_version",
     "lock_transaction": "lock_transaction",
-    "history_device": "history_device"
+    "history_device": "history_device",
+    "transaction": "transaction",
+    "transaction_items": "transaction_items"
 }
