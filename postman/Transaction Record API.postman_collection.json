@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e09b3582-ccda-4722-a4d3-6cf6e4e6e4c1",
-		"name": "Authentication Service",
+		"name": "Transaction Record API",
 		"description": "Request & Response Assignment API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -979,6 +979,330 @@
 									"body": "{\n    \"status\": \"success\",\n    \"statusCode\": 200,\n    \"payload\": {\n        \"user_id\": 11,\n        \"user_name\": \"John Doe XI\",\n        \"user_code\": \"948561\",\n        \"user_email\": \"john.doexi.go@gmail.co.id\",\n        \"user_phone\": \"+62817888167\",\n        \"user_status\": \"active\",\n        \"last_login\": \"2019-08-04T03:37:51.000Z\",\n        \"last_activity\": \"2019-08-04T03:39:40.000Z\",\n        \"created_date\": \"2019-08-03T15:19:22.000Z\",\n        \"updated_date\": \"2019-08-04T03:39:40.000Z\"\n    }\n}"
 								}
 							]
+						}
+					]
+				},
+				{
+					"name": "transaction",
+					"item": [
+						{
+							"name": "create transaction",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"total_amount\": 20000,\n    \"paid_amount\": 50000,\n    \"payment_method\": \"card\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update transaction",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_number\": \"22223\",\n    \"amount\": 200,\n    \"type\": \"expense\",\n    \"notes\": \"proyek\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/:transaction_id",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										":transaction_id"
+									],
+									"variable": [
+										{
+											"key": "transaction_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "soft delete transaction",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_number\": \"22223\"\n}"
+								},
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/:transaction_id",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										":transaction_id"
+									],
+									"variable": [
+										{
+											"key": "transaction_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get pagination transaction",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction?page=1&perpage=1",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "perpage",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all transaction",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "access-token",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "app-version",
+										"value": "{{app-version}}",
+										"type": "text"
+									},
+									{
+										"key": "platform",
+										"value": "{{platform}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/all?payment_method=cash&from=1000&to=10000",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										"all"
+									],
+									"query": [
+										{
+											"key": "payment_method",
+											"value": "cash"
+										},
+										{
+											"key": "from",
+											"value": "1000",
+											"description": "query based on total amount"
+										},
+										{
+											"key": "to",
+											"value": "10000",
+											"description": "query based on total amount"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get transaction",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "access-token",
+										"type": "text",
+										"value": "{{access-token}}"
+									},
+									{
+										"key": "app-version",
+										"type": "text",
+										"value": "{{app-version}}"
+									},
+									{
+										"key": "platform",
+										"type": "text",
+										"value": "{{platform}}"
+									}
+								],
+								"url": {
+									"raw": "{{proto}}://{{domain-url}}/transaction/:transaction_id",
+									"protocol": "{{proto}}",
+									"host": [
+										"{{domain-url}}"
+									],
+									"path": [
+										"transaction",
+										":transaction_id"
+									],
+									"variable": [
+										{
+											"key": "transaction_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					]
 				}
